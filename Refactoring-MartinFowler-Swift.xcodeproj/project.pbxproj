@@ -1,0 +1,458 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E81B83F02B29279C00758522 /* Refactoring_MartinFowler_Swift.docc in Sources */ = {isa = PBXBuildFile; fileRef = E81B83EF2B29279C00758522 /* Refactoring_MartinFowler_Swift.docc */; };
+		E81B83F62B29279C00758522 /* Refactoring_MartinFowler_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81B83EB2B29279C00758522 /* Refactoring_MartinFowler_Swift.framework */; };
+		E81B83FB2B29279C00758522 /* Refactoring_MartinFowler_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B83FA2B29279C00758522 /* Refactoring_MartinFowler_SwiftTests.swift */; };
+		E81B83FC2B29279C00758522 /* Refactoring_MartinFowler_Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = E81B83EE2B29279C00758522 /* Refactoring_MartinFowler_Swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E81B83F72B29279C00758522 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E81B83E22B29279B00758522 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E81B83EA2B29279C00758522;
+			remoteInfo = "Refactoring-MartinFowler-Swift";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E81B83EB2B29279C00758522 /* Refactoring_MartinFowler_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Refactoring_MartinFowler_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E81B83EE2B29279C00758522 /* Refactoring_MartinFowler_Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Refactoring_MartinFowler_Swift.h; sourceTree = "<group>"; };
+		E81B83EF2B29279C00758522 /* Refactoring_MartinFowler_Swift.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Refactoring_MartinFowler_Swift.docc; sourceTree = "<group>"; };
+		E81B83F52B29279C00758522 /* Refactoring-MartinFowler-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Refactoring-MartinFowler-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E81B83FA2B29279C00758522 /* Refactoring_MartinFowler_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refactoring_MartinFowler_SwiftTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E81B83E82B29279C00758522 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E81B83F22B29279C00758522 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E81B83F62B29279C00758522 /* Refactoring_MartinFowler_Swift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E81B83E12B29279B00758522 = {
+			isa = PBXGroup;
+			children = (
+				E81B83ED2B29279C00758522 /* Refactoring-MartinFowler-Swift */,
+				E81B83F92B29279C00758522 /* Refactoring-MartinFowler-SwiftTests */,
+				E81B83EC2B29279C00758522 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E81B83EC2B29279C00758522 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E81B83EB2B29279C00758522 /* Refactoring_MartinFowler_Swift.framework */,
+				E81B83F52B29279C00758522 /* Refactoring-MartinFowler-SwiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E81B83ED2B29279C00758522 /* Refactoring-MartinFowler-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				E81B83EE2B29279C00758522 /* Refactoring_MartinFowler_Swift.h */,
+				E81B83EF2B29279C00758522 /* Refactoring_MartinFowler_Swift.docc */,
+			);
+			path = "Refactoring-MartinFowler-Swift";
+			sourceTree = "<group>";
+		};
+		E81B83F92B29279C00758522 /* Refactoring-MartinFowler-SwiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				E81B83FA2B29279C00758522 /* Refactoring_MartinFowler_SwiftTests.swift */,
+			);
+			path = "Refactoring-MartinFowler-SwiftTests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E81B83E62B29279C00758522 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E81B83FC2B29279C00758522 /* Refactoring_MartinFowler_Swift.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		E81B83EA2B29279C00758522 /* Refactoring-MartinFowler-Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E81B83FF2B29279C00758522 /* Build configuration list for PBXNativeTarget "Refactoring-MartinFowler-Swift" */;
+			buildPhases = (
+				E81B83E62B29279C00758522 /* Headers */,
+				E81B83E72B29279C00758522 /* Sources */,
+				E81B83E82B29279C00758522 /* Frameworks */,
+				E81B83E92B29279C00758522 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Refactoring-MartinFowler-Swift";
+			productName = "Refactoring-MartinFowler-Swift";
+			productReference = E81B83EB2B29279C00758522 /* Refactoring_MartinFowler_Swift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E81B83F42B29279C00758522 /* Refactoring-MartinFowler-SwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E81B84022B29279C00758522 /* Build configuration list for PBXNativeTarget "Refactoring-MartinFowler-SwiftTests" */;
+			buildPhases = (
+				E81B83F12B29279C00758522 /* Sources */,
+				E81B83F22B29279C00758522 /* Frameworks */,
+				E81B83F32B29279C00758522 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E81B83F82B29279C00758522 /* PBXTargetDependency */,
+			);
+			name = "Refactoring-MartinFowler-SwiftTests";
+			productName = "Refactoring-MartinFowler-SwiftTests";
+			productReference = E81B83F52B29279C00758522 /* Refactoring-MartinFowler-SwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E81B83E22B29279B00758522 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					E81B83EA2B29279C00758522 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					E81B83F42B29279C00758522 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+				};
+			};
+			buildConfigurationList = E81B83E52B29279B00758522 /* Build configuration list for PBXProject "Refactoring-MartinFowler-Swift" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E81B83E12B29279B00758522;
+			productRefGroup = E81B83EC2B29279C00758522 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E81B83EA2B29279C00758522 /* Refactoring-MartinFowler-Swift */,
+				E81B83F42B29279C00758522 /* Refactoring-MartinFowler-SwiftTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E81B83E92B29279C00758522 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E81B83F32B29279C00758522 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E81B83E72B29279C00758522 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E81B83F02B29279C00758522 /* Refactoring_MartinFowler_Swift.docc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E81B83F12B29279C00758522 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E81B83FB2B29279C00758522 /* Refactoring_MartinFowler_SwiftTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E81B83F82B29279C00758522 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E81B83EA2B29279C00758522 /* Refactoring-MartinFowler-Swift */;
+			targetProxy = E81B83F72B29279C00758522 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		E81B83FD2B29279C00758522 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E81B83FE2B29279C00758522 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E81B84002B29279C00758522 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 5W5Y54862B;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.goyes.Refactoring-MartinFowler-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E81B84012B29279C00758522 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 5W5Y54862B;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.goyes.Refactoring-MartinFowler-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		E81B84032B29279C00758522 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5W5Y54862B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.goyes.Refactoring-MartinFowler-SwiftTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E81B84042B29279C00758522 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5W5Y54862B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.goyes.Refactoring-MartinFowler-SwiftTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E81B83E52B29279B00758522 /* Build configuration list for PBXProject "Refactoring-MartinFowler-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E81B83FD2B29279C00758522 /* Debug */,
+				E81B83FE2B29279C00758522 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E81B83FF2B29279C00758522 /* Build configuration list for PBXNativeTarget "Refactoring-MartinFowler-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E81B84002B29279C00758522 /* Debug */,
+				E81B84012B29279C00758522 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E81B84022B29279C00758522 /* Build configuration list for PBXNativeTarget "Refactoring-MartinFowler-SwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E81B84032B29279C00758522 /* Debug */,
+				E81B84042B29279C00758522 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E81B83E22B29279B00758522 /* Project object */;
+}
