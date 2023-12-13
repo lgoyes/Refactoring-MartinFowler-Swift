@@ -27,9 +27,9 @@ struct BillPrinter {
         case unknownType(String)
     }
     
-    fileprivate func amountFor(_ play: Play, _ aPerformance: Performance) throws -> Int {
+    fileprivate func amountFor(_ aPerformance: Performance, in plays: [String: Play]) throws -> Int {
         var result: Int
-        switch play.type {
+        switch playFor(aPerformance, in: plays).type {
         case "tragedy":
             result = 40_000
             if aPerformance.audience > 30 {
@@ -42,7 +42,7 @@ struct BillPrinter {
             }
             result += 300 * aPerformance.audience
         default:
-            throw Error.unknownType(play.type)
+            throw Error.unknownType(playFor(aPerformance, in: plays).type)
         }
         return result
     }
@@ -52,6 +52,7 @@ struct BillPrinter {
     }
     
     func statement(invoice: Invoice, plays: [String: Play]) throws -> String {
+        
         var totalAmount = 0
         var volumeCredits = 0
         var result = "Statement for \(invoice.customer)\n"
@@ -61,7 +62,7 @@ struct BillPrinter {
         formatter.currencyCode = "USD"
         
         for perf in invoice.performances {
-            let thisAmount = try amountFor(playFor(perf, in: plays), perf)
+            let thisAmount = try amountFor(perf, in: plays)
             
             // add volume credits
             volumeCredits += max(perf.audience - 30, 0)
