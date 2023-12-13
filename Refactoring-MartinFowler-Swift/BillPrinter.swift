@@ -27,20 +27,20 @@ struct BillPrinter {
         case unknownType(String)
     }
     
-    fileprivate func amountFor(_ play: Play, _ perf: Performance) throws -> Int {
+    fileprivate func amountFor(_ play: Play, _ aPerformance: Performance) throws -> Int {
         var result: Int
         switch play.type {
         case "tragedy":
             result = 40_000
-            if perf.audience > 30 {
-                result += 1_000 * (perf.audience - 30)
+            if aPerformance.audience > 30 {
+                result += 1_000 * (aPerformance.audience - 30)
             }
         case "comedy":
             result = 30_000
-            if perf.audience > 20 {
-                result += 10_000 + 500 * (perf.audience - 20)
+            if aPerformance.audience > 20 {
+                result += 10_000 + 500 * (aPerformance.audience - 20)
             }
-            result += 300 * perf.audience
+            result += 300 * aPerformance.audience
         default:
             throw Error.unknownType(play.type)
         }
