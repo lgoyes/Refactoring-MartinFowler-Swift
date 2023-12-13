@@ -47,6 +47,10 @@ struct BillPrinter {
         return result
     }
     
+    fileprivate func playFor(_ aPerformance: Performance, in plays: [String: Play]) -> Play {
+        plays[aPerformance.playId]!
+    }
+    
     func statement(invoice: Invoice, plays: [String: Play]) throws -> String {
         var totalAmount = 0
         var volumeCredits = 0
@@ -57,7 +61,7 @@ struct BillPrinter {
         formatter.currencyCode = "USD"
         
         for perf in invoice.performances {
-            let play = plays[perf.playId]!
+            let play = playFor(perf, in: plays)
             let thisAmount = try amountFor(play, perf)
             
             // add volume credits
