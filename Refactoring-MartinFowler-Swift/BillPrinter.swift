@@ -73,7 +73,7 @@ struct BillPrinter {
             }
             
             // print line for this order
-            result += "   \(playFor(perf, in: plays).name): \(formatter.string(from: NSNumber(value: totalAmount / 100))!) (\(perf.audience)) seats\n"
+            result += "   \(playFor(perf, in: plays).name): \(formatter.string(from: NSNumber(value: thisAmount / 100))!) (\(perf.audience)) seats\n"
             totalAmount += thisAmount
         }
         
