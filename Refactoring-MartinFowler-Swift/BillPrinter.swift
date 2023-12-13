@@ -61,19 +61,18 @@ struct BillPrinter {
         formatter.currencyCode = "USD"
         
         for perf in invoice.performances {
-            let play = playFor(perf, in: plays)
-            let thisAmount = try amountFor(play, perf)
+            let thisAmount = try amountFor(playFor(perf, in: plays), perf)
             
             // add volume credits
             volumeCredits += max(perf.audience - 30, 0)
             
             // add extra credit for every ten comedy attendees
-            if (play.type == "comedy") {
+            if (playFor(perf, in: plays).type == "comedy") {
                 volumeCredits += Int(floor(Double(perf.audience) / 5.0))
             }
             
             // print line for this order
-            result += "   \(play.name): \(formatter.string(from: NSNumber(value: totalAmount / 100))!) (\(perf.audience)) seats\n"
+            result += "   \(playFor(perf, in: plays).name): \(formatter.string(from: NSNumber(value: totalAmount / 100))!) (\(perf.audience)) seats\n"
             totalAmount += thisAmount
         }
         
