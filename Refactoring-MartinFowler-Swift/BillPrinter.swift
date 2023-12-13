@@ -27,6 +27,24 @@ struct BillPrinter {
         case unknownType(String)
     }
     
+    fileprivate func amountFor(_ play: Play, _ thisAmount: inout Int, _ perf: Performance) throws {
+        switch play.type {
+        case "tragedy":
+            thisAmount = 40_000
+            if perf.audience > 30 {
+                thisAmount += 1_000 * (perf.audience - 30)
+            }
+        case "comedy":
+            thisAmount = 30_000
+            if perf.audience > 20 {
+                thisAmount += 10_000 + 500 * (perf.audience - 20)
+            }
+            thisAmount += 300 * perf.audience
+        default:
+            throw Error.unknownType(play.type)
+        }
+    }
+    
     func statement(invoice: Invoice, plays: [String: Play]) throws -> String {
         var totalAmount = 0
         var volumeCredits = 0
@@ -40,21 +58,7 @@ struct BillPrinter {
             let play = plays[perf.playId]!
             var thisAmount = 0
             
-            switch play.type {
-            case "tragedy":
-                thisAmount = 40_000
-                if perf.audience > 30 {
-                    thisAmount += 1_000 * (perf.audience - 30)
-                }
-            case "comedy":
-                thisAmount = 30_000
-                if perf.audience > 20 {
-                    thisAmount += 10_000 + 500 * (perf.audience - 20)
-                }
-                thisAmount += 300 * perf.audience
-            default:
-                throw Error.unknownType(play.type)
-            }
+            try amountFor(play, &thisAmount, perf)
             
             // add volume credits
             volumeCredits += max(perf.audience - 30, 0)
