@@ -21,9 +21,9 @@ fileprivate struct BillPrinterStub {
     ])
     static let expectedOutput = """
                                 Statement for hamlet
-                                   Hamlet: US$ 0,00 (55) seats
-                                   As You Like It: US$ 650,00 (35) seats
-                                   Othello: US$ 1.230,00 (40) seats
+                                   Hamlet: US$ 650,00 (55) seats
+                                   As You Like It: US$ 580,00 (35) seats
+                                   Othello: US$ 500,00 (40) seats
                                 Amount owed is US$ 1.730,00
                                 You earned 47 credits
                                 """
