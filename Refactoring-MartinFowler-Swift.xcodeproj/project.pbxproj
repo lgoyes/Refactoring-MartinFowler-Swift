@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		E81B83F02B29279C00758522 /* Refactoring_MartinFowler_Swift.docc in Sources */ = {isa = PBXBuildFile; fileRef = E81B83EF2B29279C00758522 /* Refactoring_MartinFowler_Swift.docc */; };
 		E81B83F62B29279C00758522 /* Refactoring_MartinFowler_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81B83EB2B29279C00758522 /* Refactoring_MartinFowler_Swift.framework */; };
-		E81B83FB2B29279C00758522 /* Refactoring_MartinFowler_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B83FA2B29279C00758522 /* Refactoring_MartinFowler_SwiftTests.swift */; };
 		E81B83FC2B29279C00758522 /* Refactoring_MartinFowler_Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = E81B83EE2B29279C00758522 /* Refactoring_MartinFowler_Swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E81B84062B2927F200758522 /* BillPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B84052B2927F200758522 /* BillPrinter.swift */; };
+		E81B84082B29308200758522 /* BillPrinterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B84072B29308200758522 /* BillPrinterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +29,8 @@
 		E81B83EE2B29279C00758522 /* Refactoring_MartinFowler_Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Refactoring_MartinFowler_Swift.h; sourceTree = "<group>"; };
 		E81B83EF2B29279C00758522 /* Refactoring_MartinFowler_Swift.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Refactoring_MartinFowler_Swift.docc; sourceTree = "<group>"; };
 		E81B83F52B29279C00758522 /* Refactoring-MartinFowler-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Refactoring-MartinFowler-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E81B83FA2B29279C00758522 /* Refactoring_MartinFowler_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refactoring_MartinFowler_SwiftTests.swift; sourceTree = "<group>"; };
+		E81B84052B2927F200758522 /* BillPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPrinter.swift; sourceTree = "<group>"; };
+		E81B84072B29308200758522 /* BillPrinterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPrinterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		E81B83ED2B29279C00758522 /* Refactoring-MartinFowler-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				E81B84052B2927F200758522 /* BillPrinter.swift */,
 				E81B83EE2B29279C00758522 /* Refactoring_MartinFowler_Swift.h */,
 				E81B83EF2B29279C00758522 /* Refactoring_MartinFowler_Swift.docc */,
 			);
@@ -80,7 +83,7 @@
 		E81B83F92B29279C00758522 /* Refactoring-MartinFowler-SwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				E81B83FA2B29279C00758522 /* Refactoring_MartinFowler_SwiftTests.swift */,
+				E81B84072B29308200758522 /* BillPrinterTests.swift */,
 			);
 			path = "Refactoring-MartinFowler-SwiftTests";
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E81B83F02B29279C00758522 /* Refactoring_MartinFowler_Swift.docc in Sources */,
+				E81B84062B2927F200758522 /* BillPrinter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E81B83FB2B29279C00758522 /* Refactoring_MartinFowler_SwiftTests.swift in Sources */,
+				E81B84082B29308200758522 /* BillPrinterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +399,7 @@
 		E81B84032B29279C00758522 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5W5Y54862B;
@@ -410,6 +415,7 @@
 		E81B84042B29279C00758522 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5W5Y54862B;
