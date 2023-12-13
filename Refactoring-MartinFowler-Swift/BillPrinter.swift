@@ -62,8 +62,6 @@ struct BillPrinter {
         formatter.currencyCode = "USD"
         
         for perf in invoice.performances {
-            let thisAmount = try amountFor(perf, in: plays)
-            
             // add volume credits
             volumeCredits += max(perf.audience - 30, 0)
             
@@ -73,8 +71,8 @@ struct BillPrinter {
             }
             
             // print line for this order
-            result += "   \(playFor(perf, in: plays).name): \(formatter.string(from: NSNumber(value: thisAmount / 100))!) (\(perf.audience)) seats\n"
-            totalAmount += thisAmount
+            result += "   \(playFor(perf, in: plays).name): \(formatter.string(from: NSNumber(value: try amountFor(perf, in: plays) / 100))!) (\(perf.audience)) seats\n"
+            totalAmount += try amountFor(perf, in: plays)
         }
         
         result += "Amount owed is \(formatter.string(from: NSNumber(value: totalAmount / 100))!)\n"
