@@ -89,12 +89,10 @@ struct BillPrinter {
     func statement(invoice: Invoice, plays: [String: Play]) throws -> String {
         var result = "Statement for \(invoice.customer)\n"
         for perf in invoice.performances {
-            // print line for this order
             result += "   \(playFor(perf, in: plays).name): \(usd(try amountFor(perf, in: plays))) (\(perf.audience)) seats\n"
         }
         
-        let totalAmount = try totalAmount(invoice, plays)
-        result += "Amount owed is \(usd(totalAmount))\n"
+        result += "Amount owed is \(usd(try totalAmount(invoice, plays)))\n"
         result += "You earned \( totalVolumeCredits(invoice, plays) ) credits"
         
         return result
