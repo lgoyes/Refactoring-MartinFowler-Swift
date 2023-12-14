@@ -70,35 +70,35 @@ struct BillPrinter {
         return formatter.string(from: NSNumber(value: Double(aNumber) / 100.0))!
     }
     
-    func totalVolumeCredits(_ invoice: Invoice, _ plays: [String: Play]) -> Int {
+    func totalVolumeCredits(_ data: StatementData, _ plays: [String: Play]) -> Int {
         var result = 0
-        for perf in invoice.performances {
+        for perf in data.performances {
             result += volumeCreditsFor(perf, plays)
         }
         return result
     }
     
-    func totalAmount(_ invoice: Invoice, _ plays: [String: Play]) throws -> Int {
+    func totalAmount(_ data: StatementData, _ plays: [String: Play]) throws -> Int {
         var result = 0
-        for perf in invoice.performances {
+        for perf in data.performances {
             result += try amountFor(perf, in: plays)
         }
         return result
     }
     
     func statement(invoice: Invoice, plays: [String: Play]) throws -> String {
-        let data = StatementData(customer: invoice.customer)
+        let data = StatementData(customer: invoice.customer, performances: invoice.performances)
         return try renderPlainText(data: data, invoice: invoice, plays: plays)
     }
     
     func renderPlainText(data: StatementData, invoice: Invoice, plays: [String: Play]) throws -> String {
         var result = "Statement for \(data.customer)\n"
-        for perf in invoice.performances {
+        for perf in data.performances {
             result += "   \(playFor(perf, in: plays).name): \(usd(try amountFor(perf, in: plays))) (\(perf.audience)) seats\n"
         }
         
-        result += "Amount owed is \(usd(try totalAmount(invoice, plays)))\n"
-        result += "You earned \( totalVolumeCredits(invoice, plays) ) credits"
+        result += "Amount owed is \(usd(try totalAmount(data, plays)))\n"
+        result += "You earned \( totalVolumeCredits(data, plays) ) credits"
         
         return result
     }
@@ -106,4 +106,5 @@ struct BillPrinter {
 
 struct StatementData {
     let customer: String
+    let performances: [Performance]
 }
