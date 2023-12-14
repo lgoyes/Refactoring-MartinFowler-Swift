@@ -51,6 +51,18 @@ struct BillPrinter {
         plays[aPerformance.playId]!
     }
     
+    fileprivate func volumeCreditsFor(_ perf: Performance, _ plays: [String : Play]) -> Int {
+        // add volume credits
+        var volumeCredits = max(perf.audience - 30, 0)
+        
+        // add extra credit for every ten comedy attendees
+        if (playFor(perf, in: plays).type == "comedy") {
+            volumeCredits += Int(floor(Double(perf.audience) / 5.0))
+        }
+        
+        return volumeCredits
+    }
+    
     func statement(invoice: Invoice, plays: [String: Play]) throws -> String {
         
         var totalAmount = 0
@@ -62,13 +74,7 @@ struct BillPrinter {
         formatter.currencyCode = "USD"
         
         for perf in invoice.performances {
-            // add volume credits
-            volumeCredits += max(perf.audience - 30, 0)
-            
-            // add extra credit for every ten comedy attendees
-            if (playFor(perf, in: plays).type == "comedy") {
-                volumeCredits += Int(floor(Double(perf.audience) / 5.0))
-            }
+            volumeCredits += volumeCreditsFor(perf, plays)
             
             // print line for this order
             result += "   \(playFor(perf, in: plays).name): \(formatter.string(from: NSNumber(value: try amountFor(perf, in: plays) / 100))!) (\(perf.audience)) seats\n"
@@ -80,4 +86,58 @@ struct BillPrinter {
         
         return result
     }
+}
+
+fileprivate func amountFor(_ aPerformance: Performance, in plays: [String: Play]) throws -> Int {
+    var result: Int
+    switch playFor(aPerformance, in: plays).type {
+    case "tragedy":
+        result = 40_000
+        if aPerformance.audience > 30 {
+            result += 1_000 * (aPerformance.audience - 30)
+        }
+    case "comedy":
+        result = 30_000
+        if aPerformance.audience > 20 {
+            result += 10_000 + 500 * (aPerformance.audience - 20)
+        }
+        result += 300 * aPerformance.audience
+    default:
+        throw Error.unknownType(playFor(aPerformance, in: plays).type)
+    }
+    return result
+}
+
+fileprivate func playFor(_ aPerformance: Performance, in plays: [String: Play]) -> Play {
+    plays[aPerformance.playId]!
+}
+
+func statement(invoice: Invoice, plays: [String: Play]) throws -> String {
+    
+    var totalAmount = 0
+    var volumeCredits = 0
+    var result = "Statement for \(invoice.customer)\n"
+    
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    formatter.currencyCode = "USD"
+    
+    for perf in invoice.performances {
+        // add volume credits
+        volumeCredits += max(perf.audience - 30, 0)
+        
+        // add extra credit for every ten comedy attendees
+        if (playFor(perf, in: plays).type == "comedy") {
+            volumeCredits += Int(floor(Double(perf.audience) / 5.0))
+        }
+        
+        // print line for this order
+        result += "   \(playFor(perf, in: plays).name): \(formatter.string(from: NSNumber(value: try amountFor(perf, in: plays) / 100))!) (\(perf.audience)) seats\n"
+        totalAmount += try amountFor(perf, in: plays)
+    }
+    
+    result += "Amount owed is \(formatter.string(from: NSNumber(value: totalAmount / 100))!)\n"
+    result += "You earned \(volumeCredits) credits"
+    
+    return result
 }
