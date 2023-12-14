@@ -88,11 +88,9 @@ struct BillPrinter {
             result += "   \(playFor(perf, in: plays).name): \(usd(try amountFor(perf, in: plays))) (\(perf.audience)) seats\n"
             totalAmount += try amountFor(perf, in: plays)
         }
-        
-        let volumeCredits = totalVolumeCredits(invoice, plays)
-        
+                
         result += "Amount owed is \(usd(totalAmount))\n"
-        result += "You earned \(volumeCredits) credits"
+        result += "You earned \( totalVolumeCredits(invoice, plays) ) credits"
         
         return result
     }
