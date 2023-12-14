@@ -71,19 +71,19 @@ struct BillPrinter {
     }
     
     func totalVolumeCredits(_ invoice: Invoice, _ plays: [String: Play]) -> Int {
-        var volumeCredits = 0
+        var result = 0
         for perf in invoice.performances {
-            volumeCredits += volumeCreditsFor(perf, plays)
+            result += volumeCreditsFor(perf, plays)
         }
-        return volumeCredits
+        return result
     }
     
     func totalAmount(_ invoice: Invoice, _ plays: [String: Play]) throws -> Int {
-        var totalAmount = 0
+        var result = 0
         for perf in invoice.performances {
-            totalAmount += try amountFor(perf, in: plays)
+            result += try amountFor(perf, in: plays)
         }
-        return totalAmount
+        return result
     }
     
     func statement(invoice: Invoice, plays: [String: Play]) throws -> String {
