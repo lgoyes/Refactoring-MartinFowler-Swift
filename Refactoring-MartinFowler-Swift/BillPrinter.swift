@@ -51,16 +51,16 @@ struct BillPrinter {
         plays[aPerformance.playId]!
     }
     
-    fileprivate func volumeCreditsFor(_ perf: Performance, _ plays: [String : Play]) -> Int {
+    fileprivate func volumeCreditsFor(_ aPerformance: Performance, _ plays: [String : Play]) -> Int {
         // add volume credits
-        var volumeCredits = max(perf.audience - 30, 0)
+        var result = max(aPerformance.audience - 30, 0)
         
         // add extra credit for every ten comedy attendees
-        if (playFor(perf, in: plays).type == "comedy") {
-            volumeCredits += Int(floor(Double(perf.audience) / 5.0))
+        if (playFor(aPerformance, in: plays).type == "comedy") {
+            result += Int(floor(Double(aPerformance.audience) / 5.0))
         }
         
-        return volumeCredits
+        return result
     }
     
     func statement(invoice: Invoice, plays: [String: Play]) throws -> String {
