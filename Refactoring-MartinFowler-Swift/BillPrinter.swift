@@ -73,7 +73,6 @@ struct BillPrinter {
     func statement(invoice: Invoice, plays: [String: Play]) throws -> String {
         
         var totalAmount = 0
-        var volumeCredits = 0
         var result = "Statement for \(invoice.customer)\n"
         
         for perf in invoice.performances {
@@ -81,6 +80,8 @@ struct BillPrinter {
             result += "   \(playFor(perf, in: plays).name): \(usd(try amountFor(perf, in: plays))) (\(perf.audience)) seats\n"
             totalAmount += try amountFor(perf, in: plays)
         }
+        
+        var volumeCredits = 0
         for perf in invoice.performances {
             volumeCredits += volumeCreditsFor(perf, plays)
         }
