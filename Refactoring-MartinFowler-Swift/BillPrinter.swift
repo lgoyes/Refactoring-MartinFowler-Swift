@@ -70,6 +70,14 @@ struct BillPrinter {
         return formatter.string(from: NSNumber(value: Double(aNumber) / 100.0))!
     }
     
+    func totalVolumeCredits(_ invoice: Invoice, _ plays: [String: Play]) -> Int {
+        var volumeCredits = 0
+        for perf in invoice.performances {
+            volumeCredits += volumeCreditsFor(perf, plays)
+        }
+        return volumeCredits
+    }
+    
     func statement(invoice: Invoice, plays: [String: Play]) throws -> String {
         
         var totalAmount = 0
@@ -81,10 +89,7 @@ struct BillPrinter {
             totalAmount += try amountFor(perf, in: plays)
         }
         
-        var volumeCredits = 0
-        for perf in invoice.performances {
-            volumeCredits += volumeCreditsFor(perf, plays)
-        }
+        let volumeCredits = totalVolumeCredits(invoice, plays)
         
         result += "Amount owed is \(usd(totalAmount))\n"
         result += "You earned \(volumeCredits) credits"
