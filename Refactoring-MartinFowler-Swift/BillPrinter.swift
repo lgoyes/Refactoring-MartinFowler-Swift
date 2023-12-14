@@ -63,7 +63,7 @@ struct BillPrinter {
         return result
     }
     
-    func format(_ aNumber: Int) -> String {
+    func usd(_ aNumber: Int) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.currencyCode = "USD"
@@ -80,11 +80,11 @@ struct BillPrinter {
             volumeCredits += volumeCreditsFor(perf, plays)
             
             // print line for this order
-            result += "   \(playFor(perf, in: plays).name): \(format(try amountFor(perf, in: plays))) (\(perf.audience)) seats\n"
+            result += "   \(playFor(perf, in: plays).name): \(usd(try amountFor(perf, in: plays))) (\(perf.audience)) seats\n"
             totalAmount += try amountFor(perf, in: plays)
         }
         
-        result += "Amount owed is \(format(totalAmount))\n"
+        result += "Amount owed is \(usd(totalAmount))\n"
         result += "You earned \(volumeCredits) credits"
         
         return result
