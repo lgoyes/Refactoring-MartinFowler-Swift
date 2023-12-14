@@ -77,11 +77,12 @@ struct BillPrinter {
         var result = "Statement for \(invoice.customer)\n"
         
         for perf in invoice.performances {
-            volumeCredits += volumeCreditsFor(perf, plays)
-            
             // print line for this order
             result += "   \(playFor(perf, in: plays).name): \(usd(try amountFor(perf, in: plays))) (\(perf.audience)) seats\n"
             totalAmount += try amountFor(perf, in: plays)
+        }
+        for perf in invoice.performances {
+            volumeCredits += volumeCreditsFor(perf, plays)
         }
         
         result += "Amount owed is \(usd(totalAmount))\n"
