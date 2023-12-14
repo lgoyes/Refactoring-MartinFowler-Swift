@@ -87,12 +87,12 @@ struct BillPrinter {
     }
     
     func statement(invoice: Invoice, plays: [String: Play]) throws -> String {
-        let data = StatementData()
+        let data = StatementData(customer: invoice.customer)
         return try renderPlainText(data: data, invoice: invoice, plays: plays)
     }
     
     func renderPlainText(data: StatementData, invoice: Invoice, plays: [String: Play]) throws -> String {
-        var result = "Statement for \(invoice.customer)\n"
+        var result = "Statement for \(data.customer)\n"
         for perf in invoice.performances {
             result += "   \(playFor(perf, in: plays).name): \(usd(try amountFor(perf, in: plays))) (\(perf.audience)) seats\n"
         }
@@ -105,5 +105,5 @@ struct BillPrinter {
 }
 
 struct StatementData {
-    
+    let customer: String
 }
