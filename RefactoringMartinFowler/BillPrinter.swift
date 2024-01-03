@@ -65,9 +65,8 @@ class BillPrinter {
             totalAmount += thisAmount
         }
         
-        let volumeCredits = computeTotalVolumeCredits()
         result += "Amount owed is \(try format(amountInCents: totalAmount))\n"
-        result += "You earned \(volumeCredits) credits"
+        result += "You earned \(computeTotalVolumeCredits()) credits"
         
         return result
     }
