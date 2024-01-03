@@ -65,16 +65,19 @@ class BillPrinter {
             totalAmount += thisAmount
         }
         
-        var volumeCredits = 0
-        for perf in invoice.performances {
-            // add volume credits
-            volumeCredits += getVolumeCreditsFor(performance: perf)
-        }
-        
+        let volumeCredits = computeTotalVolumeCredits()
         result += "Amount owed is \(try format(amountInCents: totalAmount))\n"
         result += "You earned \(volumeCredits) credits"
         
         return result
+    }
+    
+    func computeTotalVolumeCredits() -> Int {
+        var volumeCredits = 0
+        for perf in invoice.performances {
+            volumeCredits += getVolumeCreditsFor(performance: perf)
+        }
+        return volumeCredits
     }
     
     func format(amountInCents: Int) throws -> String {
