@@ -22,11 +22,12 @@ struct Invoice {
     let performances: [Performance]
 }
 
-enum Error: Swift.Error {
-    case unknownType(String)
-}
-
 class BillPrinter {
+    enum Error: Swift.Error {
+        case unknownType(String)
+        case possibleNumberOutOfRange
+    }
+    
     let invoice: Invoice
     let plays: [String: Play]
     init(invoice: Invoice, plays: [String : Play]) {
@@ -39,9 +40,7 @@ class BillPrinter {
         var volumeCredits = 0
         var result = "Statement for \(invoice.customer)\n"
         
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "USD"
+        
         
         for perf in invoice.performances {
             // add volume credits
@@ -49,13 +48,32 @@ class BillPrinter {
             
             let play = getPlayFor(performance: perf)
             let thisAmount = try computeAmountFor(performance: perf)
-            result += "   \(play.name): \(formatter.string(from: NSNumber(value: thisAmount / 100))!) (\(perf.audience)) seats\n"
+            result += "   \(play.name): \(try format(amountInCents: thisAmount)) (\(perf.audience)) seats\n"
             totalAmount += thisAmount
         }
         
-        result += "Amount owed is \(formatter.string(from: NSNumber(value: totalAmount / 100))!)\n"
+        result += "Amount owed is \(try format(amountInCents: totalAmount))\n"
         result += "You earned \(volumeCredits) credits"
         
+        return result
+    }
+    
+    func format(amountInCents: Int) throws -> String {
+        /*
+         When you create a new NumberFormatter, the initializer does various setup tasks, such as:
+         - Memory Allocation: Allocating memory for the instance and related data structures.
+         - Setting Default Values: Initializing default values for properties, such as locale, numberStyle, and others.
+         - Locale Configuration: Configuring the formatter based on the default locale. The locale affects how numbers are formatted, including the decimal separator, grouping separator, and other locale-specific settings.
+         - Number Style Setup: Setting up default number styles based on the specified or default style.
+         */
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "USD"
+        let amountInUSD = Double(amountInCents) / 100.0
+        guard let result = formatter.string(from: NSNumber(value: amountInUSD)) else {
+            throw Error.possibleNumberOutOfRange
+        }
         return result
     }
     
