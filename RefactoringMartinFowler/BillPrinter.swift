@@ -62,7 +62,8 @@ class BillPrinter {
         for perf in invoice.performances {
             // add volume credits
             volumeCredits += getVolumeCreditsFor(performance: perf)
-            
+        }
+        for perf in invoice.performances {
             let play = getPlayFor(performance: perf)
             let thisAmount = try computeAmountFor(performance: perf)
             result += "   \(play.name): \(try format(amountInCents: thisAmount)) (\(perf.audience)) seats\n"
