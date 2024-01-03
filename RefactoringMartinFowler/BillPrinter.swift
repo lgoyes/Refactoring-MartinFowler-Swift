@@ -22,6 +22,23 @@ struct Invoice {
     let performances: [Performance]
 }
 
+class USDFormatterFactory {
+    /*
+     When you create a new NumberFormatter, the initializer does various setup tasks, such as:
+     - Memory Allocation: Allocating memory for the instance and related data structures.
+     - Setting Default Values: Initializing default values for properties, such as locale, numberStyle, and others.
+     - Locale Configuration: Configuring the formatter based on the default locale. The locale affects how numbers are formatted, including the decimal separator, grouping separator, and other locale-specific settings.
+     - Number Style Setup: Setting up default number styles based on the specified or default style.
+     */
+    
+    static func create() -> NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "USD"
+        return formatter
+    }
+}
+
 class BillPrinter {
     enum Error: Swift.Error {
         case unknownType(String)
@@ -30,6 +47,8 @@ class BillPrinter {
     
     let invoice: Invoice
     let plays: [String: Play]
+    let formatter = USDFormatterFactory.create()
+    
     init(invoice: Invoice, plays: [String : Play]) {
         self.invoice = invoice
         self.plays = plays
@@ -39,8 +58,6 @@ class BillPrinter {
         var totalAmount = 0
         var volumeCredits = 0
         var result = "Statement for \(invoice.customer)\n"
-        
-        
         
         for perf in invoice.performances {
             // add volume credits
@@ -59,17 +76,6 @@ class BillPrinter {
     }
     
     func format(amountInCents: Int) throws -> String {
-        /*
-         When you create a new NumberFormatter, the initializer does various setup tasks, such as:
-         - Memory Allocation: Allocating memory for the instance and related data structures.
-         - Setting Default Values: Initializing default values for properties, such as locale, numberStyle, and others.
-         - Locale Configuration: Configuring the formatter based on the default locale. The locale affects how numbers are formatted, including the decimal separator, grouping separator, and other locale-specific settings.
-         - Number Style Setup: Setting up default number styles based on the specified or default style.
-         */
-        
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "USD"
         let amountInUSD = Double(amountInCents) / 100.0
         guard let result = formatter.string(from: NSNumber(value: amountInUSD)) else {
             throw Error.possibleNumberOutOfRange
