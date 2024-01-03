@@ -56,18 +56,19 @@ class BillPrinter {
     
     func statement() throws -> String {
         var totalAmount = 0
-        var volumeCredits = 0
         var result = "Statement for \(invoice.customer)\n"
         
-        for perf in invoice.performances {
-            // add volume credits
-            volumeCredits += getVolumeCreditsFor(performance: perf)
-        }
         for perf in invoice.performances {
             let play = getPlayFor(performance: perf)
             let thisAmount = try computeAmountFor(performance: perf)
             result += "   \(play.name): \(try format(amountInCents: thisAmount)) (\(perf.audience)) seats\n"
             totalAmount += thisAmount
+        }
+        
+        var volumeCredits = 0
+        for perf in invoice.performances {
+            // add volume credits
+            volumeCredits += getVolumeCreditsFor(performance: perf)
         }
         
         result += "Amount owed is \(try format(amountInCents: totalAmount))\n"
