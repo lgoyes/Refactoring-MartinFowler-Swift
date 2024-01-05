@@ -72,11 +72,11 @@ class BillPrinter {
     func statementHTML() throws -> String {
         var result = "<h1>Statement for \(invoice.customer)</h1>\n"
         result += "<table>\n"
-        result += "<tr><th>play</th><th>seats</th><th>cost</th></tr>\n"
+        result += "<tr><th>Play</th><th>Seats</th><th>Cost</th></tr>\n"
         for perf in invoice.performances {
             let play = getPlayFor(performance: perf)
             let thisAmount = try computeAmountFor(performance: perf)
-            result += "<tr>"
+            result += "   <tr>"
             result += "<td>\(play.name)</td>"
             result += "<td>\(perf.audience)</td>"
             result += "<td>\(try format(amountInCents: thisAmount))</td>"

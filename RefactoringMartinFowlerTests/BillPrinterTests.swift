@@ -27,6 +27,17 @@ fileprivate struct BillPrinterStub {
                                 Amount owed is 1730,00 US$
                                 You earned 47 credits
                                 """
+    static let expectedOutputHTML = """
+                                <h1>Statement for hamlet</h1>
+                                <table>
+                                <tr><th>Play</th><th>Seats</th><th>Cost</th></tr>
+                                   <tr><td>Hamlet</td><td>55</td><td>650,00 US$</td></tr>
+                                   <tr><td>As You Like It</td><td>35</td><td>580,00 US$</td></tr>
+                                   <tr><td>Othello</td><td>40</td><td>500,00 US$</td></tr>
+                                </table>
+                                <p>Amount owed is <em>1730,00 US$</em></p>
+                                <p>You earned <em>47</em> credits</p>
+                                """
 }
 
 final class BillPrinterTests: XCTestCase {
@@ -46,6 +57,12 @@ final class BillPrinterTests: XCTestCase {
     func test_WHEN_statement_GIVEN_somePlaysAndInvoices_THEN_itShouldReturnSomething() throws {
         let result = try sut.statement()
         let expectedResult = BillPrinterStub.expectedOutput
+        XCTAssertEqual(result, expectedResult)
+    }
+    
+    func test_WHEN_statementHTML_GIVEN_somePlaysAndInvoices_THEN_itShouldReturnSomething() throws {
+        let result = try sut.statementHTML()
+        let expectedResult = BillPrinterStub.expectedOutputHTML
         XCTAssertEqual(result, expectedResult)
     }
     
