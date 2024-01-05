@@ -12,9 +12,13 @@ struct Play {
     let type: String
 }
 
-struct Performance {
+class Performance {
     let playId: String
     let audience: Int
+    init(playId: String, audience: Int) {
+        self.playId = playId
+        self.audience = audience
+    }
 }
 
 struct Invoice {
@@ -39,6 +43,20 @@ class USDFormatterFactory {
     }
 }
 
+struct RenderModel {
+    let customer: String
+    let performances: [EnrichedPerformance]
+}
+
+class EnrichedPerformance: Performance {
+    let playName: String
+    
+    init(performance: Performance, play: Play) {
+        self.playName = play.name
+        super.init(playId: performance.playId, audience: performance.audience)
+    }
+}
+
 class BillPrinter {
     enum Error: Swift.Error {
         case unknownType(String)
@@ -55,11 +73,18 @@ class BillPrinter {
     }
     
     func statement() throws -> String {
+        let invoice = RenderModel(
+            customer: invoice.customer,
+            performances: invoice.performances.map({ EnrichedPerformance(performance: $0, play: getPlayFor(performance: $0)) })
+        )
+        return try renderPlainText(invoice)
+    }
+    
+    func renderPlainText(_ invoice: RenderModel) throws -> String {
         var result = "Statement for \(invoice.customer)\n"
         for perf in invoice.performances {
-            let play = getPlayFor(performance: perf)
             let thisAmount = try computeAmountFor(performance: perf)
-            result += "   \(play.name): \(try format(amountInCents: thisAmount)) (\(perf.audience)) seats\n"
+            result += "   \(perf.playName): \(try format(amountInCents: thisAmount)) (\(perf.audience)) seats\n"
         }
         
         let totalAmount = try computeTotalAmount()
@@ -91,12 +116,11 @@ class BillPrinter {
     }
     
     func computeTotalAmount() throws -> Int {
-        var totalAmount = 0
-        for perf in invoice.performances {
-            let thisAmount = try computeAmountFor(performance: perf)
-            totalAmount += thisAmount
+        let initialTotalAmount = 0
+        return try invoice.performances.reduce(initialTotalAmount) { partialResult, performance in
+            let thisAmount = try computeAmountFor(performance: performance)
+            return partialResult + thisAmount
         }
-        return totalAmount
     }
     
     func computeTotalVolumeCredits() -> Int {
