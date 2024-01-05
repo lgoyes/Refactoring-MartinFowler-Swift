@@ -55,20 +55,27 @@ class BillPrinter {
     }
     
     func statement() throws -> String {
-        var totalAmount = 0
         var result = "Statement for \(invoice.customer)\n"
-        
         for perf in invoice.performances {
             let play = getPlayFor(performance: perf)
             let thisAmount = try computeAmountFor(performance: perf)
             result += "   \(play.name): \(try format(amountInCents: thisAmount)) (\(perf.audience)) seats\n"
-            totalAmount += thisAmount
         }
         
+        let totalAmount = try computeTotalAmount()
         result += "Amount owed is \(try format(amountInCents: totalAmount))\n"
         result += "You earned \(computeTotalVolumeCredits()) credits"
         
         return result
+    }
+    
+    func computeTotalAmount() throws -> Int {
+        var totalAmount = 0
+        for perf in invoice.performances {
+            let thisAmount = try computeAmountFor(performance: perf)
+            totalAmount += thisAmount
+        }
+        return totalAmount
     }
     
     func computeTotalVolumeCredits() -> Int {

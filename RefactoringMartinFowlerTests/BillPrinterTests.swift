@@ -48,4 +48,12 @@ final class BillPrinterTests: XCTestCase {
         let expectedResult = BillPrinterStub.expectedOutput
         XCTAssertEqual(result, expectedResult)
     }
+    
+    func testPerformace_WHEN_statement() {
+        self.measure {
+            for _ in 0..<1000 {
+                _ = try! sut.statement()
+            }
+        }
+    }
 }
