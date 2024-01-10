@@ -26,23 +26,6 @@ struct Invoice {
     let performances: [Performance]
 }
 
-class USDFormatterFactory {
-    /*
-     When you create a new NumberFormatter, the initializer does various setup tasks, such as:
-     - Memory Allocation: Allocating memory for the instance and related data structures.
-     - Setting Default Values: Initializing default values for properties, such as locale, numberStyle, and others.
-     - Locale Configuration: Configuring the formatter based on the default locale. The locale affects how numbers are formatted, including the decimal separator, grouping separator, and other locale-specific settings.
-     - Number Style Setup: Setting up default number styles based on the specified or default style.
-     */
-    
-    static func create() -> NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "USD"
-        return formatter
-    }
-}
-
 struct RenderModel {
     let customer: String
     let performances: [EnrichedPerformance]
@@ -65,11 +48,12 @@ class BillPrinter {
     
     let invoice: Invoice
     let plays: [String: Play]
-    let formatter = USDFormatterFactory.create()
+    let usdFormatter: USDFormattable
     
-    init(invoice: Invoice, plays: [String : Play]) {
+    init(invoice: Invoice, plays: [String : Play], usdFormatter: USDFormattable = USDFormatter()) {
         self.invoice = invoice
         self.plays = plays
+        self.usdFormatter = usdFormatter
     }
     
     func statement() throws -> String {
@@ -84,17 +68,25 @@ class BillPrinter {
         var result = "Statement for \(invoice.customer)\n"
         for perf in invoice.performances {
             let thisAmount = try computeAmountFor(performance: perf)
-            result += "   \(perf.playName): \(try format(amountInCents: thisAmount)) (\(perf.audience)) seats\n"
+            result += "   \(perf.playName): \(try usdFormatter.format(amountInCents: thisAmount)) (\(perf.audience)) seats\n"
         }
         
         let totalAmount = try computeTotalAmount()
-        result += "Amount owed is \(try format(amountInCents: totalAmount))\n"
+        result += "Amount owed is \(try usdFormatter.format(amountInCents: totalAmount))\n"
         result += "You earned \(computeTotalVolumeCredits()) credits"
         
         return result
     }
     
     func statementHTML() throws -> String {
+        let invoice = RenderModel(
+            customer: invoice.customer,
+            performances: invoice.performances.map({ EnrichedPerformance(performance: $0, play: getPlayFor(performance: $0)) })
+        )
+        return try renderHTML(invoice)
+    }
+    
+    func renderHTML(_ invoice: RenderModel) throws -> String {
         var result = "<h1>Statement for \(invoice.customer)</h1>\n"
         result += "<table>\n"
         result += "<tr><th>Play</th><th>Seats</th><th>Cost</th></tr>\n"
@@ -104,12 +96,12 @@ class BillPrinter {
             result += "   <tr>"
             result += "<td>\(play.name)</td>"
             result += "<td>\(perf.audience)</td>"
-            result += "<td>\(try format(amountInCents: thisAmount))</td>"
+            result += "<td>\(try usdFormatter.format(amountInCents: thisAmount))</td>"
             result += "</tr>\n"
         }
         result += "</table>\n"
         let totalAmount = try computeTotalAmount()
-        result += "<p>Amount owed is <em>\(try format(amountInCents: totalAmount))</em></p>\n"
+        result += "<p>Amount owed is <em>\(try usdFormatter.format(amountInCents: totalAmount))</em></p>\n"
         result += "<p>You earned <em>\(computeTotalVolumeCredits())</em> credits</p>"
         
         return result
@@ -129,14 +121,6 @@ class BillPrinter {
             volumeCredits += getVolumeCreditsFor(performance: perf)
         }
         return volumeCredits
-    }
-    
-    func format(amountInCents: Int) throws -> String {
-        let amountInUSD = Double(amountInCents) / 100.0
-        guard let result = formatter.string(from: NSNumber(value: amountInUSD)) else {
-            throw Error.possibleNumberOutOfRange
-        }
-        return result
     }
     
     func getVolumeCreditsFor(performance: Performance) -> Int {
