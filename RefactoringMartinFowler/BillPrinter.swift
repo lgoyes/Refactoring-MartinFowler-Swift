@@ -12,9 +12,13 @@ struct Play {
     let type: String
 }
 
-struct Performance {
+class Performance {
     let playId: String
     let audience: Int
+    init(playId: String, audience: Int) {
+        self.playId = playId
+        self.audience = audience
+    }
 }
 
 struct Invoice {
@@ -22,75 +26,121 @@ struct Invoice {
     let performances: [Performance]
 }
 
-enum Error: Swift.Error {
-    case unknownType(String)
+struct RenderModel {
+    let customer: String
+    let performances: [EnrichedPerformance]
+}
+
+class EnrichedPerformance: Performance {
+    let playName: String
+    let amount: Int
+    let credits: Int
+    
+    init(performance: Performance, play: Play, amount: Int, credits: Int) {
+        self.playName = play.name
+        self.amount = amount
+        self.credits = credits
+        super.init(playId: performance.playId, audience: performance.audience)
+    }
+}
+
+protocol PlayRepository {
+    func getPlayFor(performance: Performance) throws -> Play
+}
+
+class DefaultPlayRepository: PlayRepository {
+    enum Error: Swift.Error {
+        case playNotFound
+    }
+    
+    let plays: [String: Play]
+    init(plays: [String : Play]) {
+        self.plays = plays
+    }
+    func getPlayFor(performance: Performance) throws -> Play {
+        guard let play = plays[performance.playId] else {
+            throw Error.playNotFound
+        }
+        return play
+    }
 }
 
 class BillPrinter {
+    enum Error: Swift.Error {
+        case unknownType(String)
+        case possibleNumberOutOfRange
+    }
+    
     let invoice: Invoice
-    let plays: [String: Play]
-    init(invoice: Invoice, plays: [String : Play]) {
+    let playRepository: PlayRepository
+    let usdFormatter: USDFormattable
+    
+    init(invoice: Invoice, playRepository: PlayRepository, usdFormatter: USDFormattable = USDFormatter()) {
         self.invoice = invoice
-        self.plays = plays
+        self.playRepository = playRepository
+        self.usdFormatter = usdFormatter
     }
     
     func statement() throws -> String {
-        var totalAmount = 0
-        var volumeCredits = 0
+        let invoice = RenderModel(
+            customer: invoice.customer,
+            performances: try invoice.performances.map({ EnrichedPerformance(performance: $0, play: try playRepository.getPlayFor(performance: $0), amount: try PerformanceAmountCalculator(performance: $0, playRepository: playRepository).compute(), credits: try VolumeCreditsCalculator(performance: $0, playRepository: playRepository).calculate() ) })
+        )
+        return try renderPlainText(invoice)
+    }
+    
+    func renderPlainText(_ invoice: RenderModel) throws -> String {
         var result = "Statement for \(invoice.customer)\n"
-        
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "USD"
-        
         for perf in invoice.performances {
-            // add volume credits
-            volumeCredits += getVolumeCreditsFor(performance: perf)
-            
-            let play = getPlayFor(performance: perf)
-            let thisAmount = try computeAmountFor(performance: perf)
-            result += "   \(play.name): \(formatter.string(from: NSNumber(value: thisAmount / 100))!) (\(perf.audience)) seats\n"
-            totalAmount += thisAmount
+            result += "   \(perf.playName): \(try usdFormatter.format(amountInCents: perf.amount)) (\(perf.audience)) seats\n"
         }
         
-        result += "Amount owed is \(formatter.string(from: NSNumber(value: totalAmount / 100))!)\n"
-        result += "You earned \(volumeCredits) credits"
+        let totalAmount = try computeTotalAmount(amounts: invoice.performances.map({ $0.amount }))
+        result += "Amount owed is \(try usdFormatter.format(amountInCents: totalAmount))\n"
+        result += "You earned \(try computeTotalVolumeCredits(credits: invoice.performances.map({ $0.credits }))) credits"
         
         return result
     }
     
-    func getVolumeCreditsFor(performance: Performance) -> Int {
-        var volumeCredits = max(performance.audience - 30, 0)
-        let play = getPlayFor(performance: performance)
-        if (play.type == "comedy") {
-            volumeCredits += Int(floor(Double(performance.audience) / 5.0))
-        }
-        return volumeCredits
+    func statementHTML() throws -> String {
+        let invoice = RenderModel(
+            customer: invoice.customer,
+            performances: try invoice.performances.map({ EnrichedPerformance(performance: $0, play: try playRepository.getPlayFor(performance: $0), amount: try PerformanceAmountCalculator(performance: $0, playRepository: playRepository).compute(), credits: try VolumeCreditsCalculator(performance: $0, playRepository: playRepository).calculate() ) })
+        )
+        return try renderHTML(invoice)
     }
     
-    func getPlayFor(performance: Performance) -> Play {
-        plays[performance.playId]!
+    func renderHTML(_ invoice: RenderModel) throws -> String {
+        var result = "<h1>Statement for \(invoice.customer)</h1>\n"
+        result += "<table>\n"
+        result += "<tr><th>Play</th><th>Seats</th><th>Cost</th></tr>\n"
+        for perf in invoice.performances {
+            let play = try playRepository.getPlayFor(performance: perf)
+            result += "   <tr>"
+            result += "<td>\(play.name)</td>"
+            result += "<td>\(perf.audience)</td>"
+            result += "<td>\(try usdFormatter.format(amountInCents: perf.amount))</td>"
+            result += "</tr>\n"
+        }
+        result += "</table>\n"
+        let totalAmount = try computeTotalAmount(amounts: invoice.performances.map({ $0.amount }))
+        result += "<p>Amount owed is <em>\(try usdFormatter.format(amountInCents: totalAmount))</em></p>\n"
+        result += "<p>You earned <em>\(try computeTotalVolumeCredits(credits: invoice.performances.map({ $0.credits })))</em> credits</p>"
+        
+        return result
     }
     
-    func computeAmountFor(performance: Performance) throws -> Int {
-        var charge = 0
-        
-        switch getPlayFor(performance: performance).type {
-        case "tragedy":
-            charge = 40_000
-            if performance.audience > 30 {
-                charge += 1_000 * (performance.audience - 30)
-            }
-        case "comedy":
-            charge = 30_000
-            if performance.audience > 20 {
-                charge += 10_000 + 500 * (performance.audience - 20)
-            }
-            charge += 300 * performance.audience
-        default:
-            throw Error.unknownType(getPlayFor(performance: performance).type)
+    func computeTotalAmount(amounts: [Int]) throws -> Int {
+        let initialTotalAmount = 0
+        return amounts.reduce(initialTotalAmount) { partialResult, thisAmount in
+            return partialResult + thisAmount
         }
-        
-        return charge
+    }
+    
+    func computeTotalVolumeCredits(credits: [Int]) throws -> Int {
+        let volumeCredits = 0
+        return credits.reduce(volumeCredits) { partialResult, credit in
+            return partialResult + credit
+        }
     }
 }
