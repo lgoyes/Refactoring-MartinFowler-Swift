@@ -46,7 +46,7 @@ final class BillPrinterTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        sut = BillPrinter(invoice: BillPrinterStub.invoice, plays: BillPrinterStub.plays)
+        sut = BillPrinter(invoice: BillPrinterStub.invoice, playRepository: DefaultPlayRepository(plays: BillPrinterStub.plays))
     }
 
     override func tearDown() {
