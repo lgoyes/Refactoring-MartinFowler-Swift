@@ -14,6 +14,8 @@
 		792BFC1C2B2E06F300F38344 /* BillPrinterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792BFC1B2B2E06F300F38344 /* BillPrinterTests.swift */; };
 		79C65B272B5C19740078C32A /* USDFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C65B262B5C19740078C32A /* USDFormatter.swift */; };
 		79C65B292B5C198C0078C32A /* USDFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C65B282B5C198C0078C32A /* USDFormatterTests.swift */; };
+		79C65B2B2B5C24B60078C32A /* PlayRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C65B2A2B5C24B60078C32A /* PlayRepository.swift */; };
+		79C65B2D2B5C24C90078C32A /* PlayRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C65B2C2B5C24C90078C32A /* PlayRepositoryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,8 @@
 		792BFC1B2B2E06F300F38344 /* BillPrinterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPrinterTests.swift; sourceTree = "<group>"; };
 		79C65B262B5C19740078C32A /* USDFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDFormatter.swift; sourceTree = "<group>"; };
 		79C65B282B5C198C0078C32A /* USDFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDFormatterTests.swift; sourceTree = "<group>"; };
+		79C65B2A2B5C24B60078C32A /* PlayRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRepository.swift; sourceTree = "<group>"; };
+		79C65B2C2B5C24C90078C32A /* PlayRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRepositoryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 				792BFC032B2E035100F38344 /* RefactoringMartinFowler.docc */,
 				792BFC192B2E03E700F38344 /* BillPrinter.swift */,
 				79C65B262B5C19740078C32A /* USDFormatter.swift */,
+				79C65B2A2B5C24B60078C32A /* PlayRepository.swift */,
 			);
 			path = RefactoringMartinFowler;
 			sourceTree = "<group>";
@@ -90,6 +95,7 @@
 			children = (
 				792BFC1B2B2E06F300F38344 /* BillPrinterTests.swift */,
 				79C65B282B5C198C0078C32A /* USDFormatterTests.swift */,
+				79C65B2C2B5C24C90078C32A /* PlayRepositoryTests.swift */,
 			);
 			path = RefactoringMartinFowlerTests;
 			sourceTree = "<group>";
@@ -205,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				792BFC042B2E035100F38344 /* RefactoringMartinFowler.docc in Sources */,
+				79C65B2B2B5C24B60078C32A /* PlayRepository.swift in Sources */,
 				79C65B272B5C19740078C32A /* USDFormatter.swift in Sources */,
 				792BFC1A2B2E03E700F38344 /* BillPrinter.swift in Sources */,
 			);
@@ -214,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79C65B2D2B5C24C90078C32A /* PlayRepositoryTests.swift in Sources */,
 				792BFC1C2B2E06F300F38344 /* BillPrinterTests.swift in Sources */,
 				79C65B292B5C198C0078C32A /* USDFormatterTests.swift in Sources */,
 			);

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Play {
+struct Play: Equatable {
     let name: String
     let type: String
 }
@@ -28,10 +28,11 @@ enum Error: Swift.Error {
 
 class BillPrinter {
     let invoice: Invoice
-    let plays: [String: Play]
-    init(invoice: Invoice, plays: [String : Play]) {
+    let playResolver: PlayResolver
+
+    init(invoice: Invoice, playResolver: PlayResolver) {
         self.invoice = invoice
-        self.plays = plays
+        self.playResolver = playResolver
     }
     
     func statement() throws -> String {
@@ -41,9 +42,9 @@ class BillPrinter {
         
         for perf in invoice.performances {
             // add volume credits
-            volumeCredits += getVolumeCreditsFor(performance: perf)
+            volumeCredits += try getVolumeCreditsFor(performance: perf)
             
-            let play = getPlayFor(performance: perf)
+            let play = try playResolver.getPlay(for: perf)
             let thisAmount = try computeAmountFor(performance: perf)
             result += "   \(play.name): \( try USDFormatter(amountInCents: thisAmount).format() ) (\(perf.audience)) seats\n"
             totalAmount += thisAmount
@@ -55,23 +56,19 @@ class BillPrinter {
         return result
     }
     
-    func getVolumeCreditsFor(performance: Performance) -> Int {
+    func getVolumeCreditsFor(performance: Performance) throws -> Int {
         var volumeCredits = max(performance.audience - 30, 0)
-        let play = getPlayFor(performance: performance)
+        let play = try playResolver.getPlay(for: performance)
         if (play.type == "comedy") {
             volumeCredits += Int(floor(Double(performance.audience) / 5.0))
         }
         return volumeCredits
     }
     
-    func getPlayFor(performance: Performance) -> Play {
-        plays[performance.playId]!
-    }
-    
     func computeAmountFor(performance: Performance) throws -> Int {
         var charge = 0
         
-        switch getPlayFor(performance: performance).type {
+        switch try playResolver.getPlay(for: performance).type {
         case "tragedy":
             charge = 40_000
             if performance.audience > 30 {
@@ -84,7 +81,7 @@ class BillPrinter {
             }
             charge += 300 * performance.audience
         default:
-            throw Error.unknownType(getPlayFor(performance: performance).type)
+            throw Error.unknownType(try playResolver.getPlay(for: performance).type)
         }
         
         return charge

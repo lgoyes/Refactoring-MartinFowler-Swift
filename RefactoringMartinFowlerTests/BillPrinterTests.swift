@@ -32,14 +32,17 @@ fileprivate struct BillPrinterStub {
 final class BillPrinterTests: XCTestCase {
 
     private var sut: BillPrinter!
+    private var playRepository: PlayResolver!
 
     override func setUp() {
         super.setUp()
-        sut = BillPrinter(invoice: BillPrinterStub.invoice, plays: BillPrinterStub.plays)
+        playRepository = PlayRepository(plays: BillPrinterStub.plays)
+        sut = BillPrinter(invoice: BillPrinterStub.invoice, playResolver: playRepository)
     }
 
     override func tearDown() {
         sut = nil
+        playRepository = nil
         super.tearDown()
     }
 
