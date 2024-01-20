@@ -39,21 +39,17 @@ class BillPrinter {
         var volumeCredits = 0
         var result = "Statement for \(invoice.customer)\n"
         
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "USD"
-        
         for perf in invoice.performances {
             // add volume credits
             volumeCredits += getVolumeCreditsFor(performance: perf)
             
             let play = getPlayFor(performance: perf)
             let thisAmount = try computeAmountFor(performance: perf)
-            result += "   \(play.name): \(formatter.string(from: NSNumber(value: thisAmount / 100))!) (\(perf.audience)) seats\n"
+            result += "   \(play.name): \( try USDFormatter(amountInCents: thisAmount).format() ) (\(perf.audience)) seats\n"
             totalAmount += thisAmount
         }
         
-        result += "Amount owed is \(formatter.string(from: NSNumber(value: totalAmount / 100))!)\n"
+        result += "Amount owed is \( try USDFormatter(amountInCents: totalAmount).format() )\n"
         result += "You earned \(volumeCredits) credits"
         
         return result
