@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79239B522B6561FD002432D9 /* BillPrinterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79239B512B6561FD002432D9 /* BillPrinterFactory.swift */; };
+		79239B542B65620D002432D9 /* BillPrinterFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79239B532B65620D002432D9 /* BillPrinterFactoryTests.swift */; };
+		79239B562B6570AF002432D9 /* ChargeCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79239B552B6570AF002432D9 /* ChargeCalculatorTests.swift */; };
+		79239B582B657117002432D9 /* ChargeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79239B572B657117002432D9 /* ChargeCalculator.swift */; };
 		792BFC042B2E035100F38344 /* RefactoringMartinFowler.docc in Sources */ = {isa = PBXBuildFile; fileRef = 792BFC032B2E035100F38344 /* RefactoringMartinFowler.docc */; };
 		792BFC0A2B2E035100F38344 /* RefactoringMartinFowler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 792BFBFF2B2E035100F38344 /* RefactoringMartinFowler.framework */; };
 		792BFC102B2E035100F38344 /* RefactoringMartinFowler.h in Headers */ = {isa = PBXBuildFile; fileRef = 792BFC022B2E035100F38344 /* RefactoringMartinFowler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		792BFC1A2B2E03E700F38344 /* BillPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792BFC192B2E03E700F38344 /* BillPrinter.swift */; };
+		792BFC1A2B2E03E700F38344 /* DefaultBillPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792BFC192B2E03E700F38344 /* DefaultBillPrinter.swift */; };
 		792BFC1C2B2E06F300F38344 /* BillPrinterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792BFC1B2B2E06F300F38344 /* BillPrinterTests.swift */; };
 		79C65B272B5C19740078C32A /* USDFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C65B262B5C19740078C32A /* USDFormatter.swift */; };
 		79C65B292B5C198C0078C32A /* USDFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C65B282B5C198C0078C32A /* USDFormatterTests.swift */; };
@@ -29,11 +33,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		79239B512B6561FD002432D9 /* BillPrinterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPrinterFactory.swift; sourceTree = "<group>"; };
+		79239B532B65620D002432D9 /* BillPrinterFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPrinterFactoryTests.swift; sourceTree = "<group>"; };
+		79239B552B6570AF002432D9 /* ChargeCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeCalculatorTests.swift; sourceTree = "<group>"; };
+		79239B572B657117002432D9 /* ChargeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeCalculator.swift; sourceTree = "<group>"; };
 		792BFBFF2B2E035100F38344 /* RefactoringMartinFowler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RefactoringMartinFowler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		792BFC022B2E035100F38344 /* RefactoringMartinFowler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefactoringMartinFowler.h; sourceTree = "<group>"; };
 		792BFC032B2E035100F38344 /* RefactoringMartinFowler.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = RefactoringMartinFowler.docc; sourceTree = "<group>"; };
 		792BFC092B2E035100F38344 /* RefactoringMartinFowlerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RefactoringMartinFowlerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		792BFC192B2E03E700F38344 /* BillPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPrinter.swift; sourceTree = "<group>"; };
+		792BFC192B2E03E700F38344 /* DefaultBillPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBillPrinter.swift; sourceTree = "<group>"; };
 		792BFC1B2B2E06F300F38344 /* BillPrinterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPrinterTests.swift; sourceTree = "<group>"; };
 		79C65B262B5C19740078C32A /* USDFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDFormatter.swift; sourceTree = "<group>"; };
 		79C65B282B5C198C0078C32A /* USDFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDFormatterTests.swift; sourceTree = "<group>"; };
@@ -83,9 +91,11 @@
 			children = (
 				792BFC022B2E035100F38344 /* RefactoringMartinFowler.h */,
 				792BFC032B2E035100F38344 /* RefactoringMartinFowler.docc */,
-				792BFC192B2E03E700F38344 /* BillPrinter.swift */,
+				792BFC192B2E03E700F38344 /* DefaultBillPrinter.swift */,
 				79C65B262B5C19740078C32A /* USDFormatter.swift */,
 				79C65B2A2B5C24B60078C32A /* PlayRepository.swift */,
+				79239B512B6561FD002432D9 /* BillPrinterFactory.swift */,
+				79239B572B657117002432D9 /* ChargeCalculator.swift */,
 			);
 			path = RefactoringMartinFowler;
 			sourceTree = "<group>";
@@ -96,6 +106,8 @@
 				792BFC1B2B2E06F300F38344 /* BillPrinterTests.swift */,
 				79C65B282B5C198C0078C32A /* USDFormatterTests.swift */,
 				79C65B2C2B5C24C90078C32A /* PlayRepositoryTests.swift */,
+				79239B532B65620D002432D9 /* BillPrinterFactoryTests.swift */,
+				79239B552B6570AF002432D9 /* ChargeCalculatorTests.swift */,
 			);
 			path = RefactoringMartinFowlerTests;
 			sourceTree = "<group>";
@@ -211,9 +223,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				792BFC042B2E035100F38344 /* RefactoringMartinFowler.docc in Sources */,
+				79239B582B657117002432D9 /* ChargeCalculator.swift in Sources */,
+				79239B522B6561FD002432D9 /* BillPrinterFactory.swift in Sources */,
 				79C65B2B2B5C24B60078C32A /* PlayRepository.swift in Sources */,
 				79C65B272B5C19740078C32A /* USDFormatter.swift in Sources */,
-				792BFC1A2B2E03E700F38344 /* BillPrinter.swift in Sources */,
+				792BFC1A2B2E03E700F38344 /* DefaultBillPrinter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,7 +237,9 @@
 			files = (
 				79C65B2D2B5C24C90078C32A /* PlayRepositoryTests.swift in Sources */,
 				792BFC1C2B2E06F300F38344 /* BillPrinterTests.swift in Sources */,
+				79239B542B65620D002432D9 /* BillPrinterFactoryTests.swift in Sources */,
 				79C65B292B5C198C0078C32A /* USDFormatterTests.swift in Sources */,
+				79239B562B6570AF002432D9 /* ChargeCalculatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

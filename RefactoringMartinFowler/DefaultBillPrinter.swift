@@ -1,5 +1,5 @@
 //
-//  BillPrinter.swift
+//  DefaultBillPrinter.swift
 //  RefactoringMartinFowler
 //
 //  Created by Luis David Goyes Garces on 16/12/23.
@@ -26,7 +26,11 @@ enum Error: Swift.Error {
     case unknownType(String)
 }
 
-class BillPrinter {
+protocol BillPrinter {
+    func statement() throws -> String
+}
+
+class DefaultBillPrinter: BillPrinter {
     let invoice: Invoice
     let playResolver: PlayResolver
 
