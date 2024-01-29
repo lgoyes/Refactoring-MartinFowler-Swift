@@ -10,6 +10,7 @@ import Foundation
 class ChargeCalculator {
     enum Error: Swift.Error {
         case invalidPlayIdForPerformance
+        case unexpectedPlayType
     }
     
     let playResolver: PlayResolver
@@ -20,14 +21,29 @@ class ChargeCalculator {
     }
     
     func calculate() throws -> Int {
+        let play = try getPlay()
+        if (play.type == "tragedy") {
+            var charge = 40_000
+            if performance.audience > 30 {
+                charge += 1_000 * (performance.audience - 30)
+            }
+            return charge
+        } else if (play.type == "comedy") {
+            var charge = 30_000
+            if performance.audience > 20 {
+                charge += 10_000 + 500 * (performance.audience - 20)
+            }
+            charge += 300 * performance.audience
+            return charge
+        } else {
+            throw Error.unexpectedPlayType
+        }
+    }
+    
+    func getPlay() throws -> Play {
         do {
             let play = try playResolver.getPlay(for: performance)
-            if (play.type == "tragedy") {
-                return 650
-            } else if (play.type == "comedy") {
-                return 580
-            }
-            return 0
+            return play
         } catch {
             throw Error.invalidPlayIdForPerformance
         }

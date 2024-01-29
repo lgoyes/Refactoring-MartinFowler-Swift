@@ -44,13 +44,12 @@ class DefaultBillPrinter: BillPrinter {
         var volumeCredits = 0
         var result = "Statement for \(invoice.customer)\n"
         
-        for perf in invoice.performances {
-            // add volume credits
-            volumeCredits += try getVolumeCreditsFor(performance: perf)
+        for performance in invoice.performances {
+            volumeCredits += try getVolumeCreditsFor(performance: performance)
             
-            let play = try playResolver.getPlay(for: perf)
-            let thisAmount = try computeAmountFor(performance: perf)
-            result += "   \(play.name): \( try USDFormatter(amountInCents: thisAmount).format() ) (\(perf.audience)) seats\n"
+            let play = try playResolver.getPlay(for: performance)
+            let thisAmount = try ChargeCalculator(playResolver: playResolver, performance: performance).calculate()
+            result += "   \(play.name): \( try USDFormatter(amountInCents: thisAmount).format() ) (\(performance.audience)) seats\n"
             totalAmount += thisAmount
         }
         
@@ -67,27 +66,5 @@ class DefaultBillPrinter: BillPrinter {
             volumeCredits += Int(floor(Double(performance.audience) / 5.0))
         }
         return volumeCredits
-    }
-    
-    func computeAmountFor(performance: Performance) throws -> Int {
-        var charge = 0
-        
-        switch try playResolver.getPlay(for: performance).type {
-        case "tragedy":
-            charge = 40_000
-            if performance.audience > 30 {
-                charge += 1_000 * (performance.audience - 30)
-            }
-        case "comedy":
-            charge = 30_000
-            if performance.audience > 20 {
-                charge += 10_000 + 500 * (performance.audience - 20)
-            }
-            charge += 300 * performance.audience
-        default:
-            throw Error.unknownType(try playResolver.getPlay(for: performance).type)
-        }
-        
-        return charge
     }
 }
