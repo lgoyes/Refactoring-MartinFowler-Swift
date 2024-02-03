@@ -48,26 +48,4 @@ class ChargeCalculator {
             throw Error.invalidPlayIdForPerformance
         }
     }
-    
-//    func computeAmountFor(performance: Performance) throws -> Int {
-//        var charge = 0
-//        
-//        switch try playResolver.getPlay(for: performance).type {
-//        case "tragedy":
-//            charge = 40_000
-//            if performance.audience > 30 {
-//                charge += 1_000 * (performance.audience - 30)
-//            }
-//        case "comedy":
-//            charge = 30_000
-//            if performance.audience > 20 {
-//                charge += 10_000 + 500 * (performance.audience - 20)
-//            }
-//            charge += 300 * performance.audience
-//        default:
-//            throw Error.unknownType(try playResolver.getPlay(for: performance).type)
-//        }
-//        
-//        return charge
-//    }
 }

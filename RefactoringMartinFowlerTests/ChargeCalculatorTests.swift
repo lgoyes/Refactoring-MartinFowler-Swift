@@ -8,22 +8,6 @@
 import XCTest
 @testable import RefactoringMartinFowler
 
-class FakePlayResolver: PlayResolver {
-    var receivedPerformance: Performance!
-    var getPlayCalled = false
-    var someError: ChargeCalculator.Error?
-    var somePlay: Play!
-    
-    func getPlay(for performance: Performance) throws -> Play {
-        getPlayCalled = true
-        receivedPerformance = performance
-        if let someError {
-            throw someError
-        }
-        return somePlay
-    }
-}
-
 final class ChargeCalculatorTests: XCTestCase {
     
     private enum Stub {
