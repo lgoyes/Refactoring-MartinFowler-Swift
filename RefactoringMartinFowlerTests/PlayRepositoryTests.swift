@@ -33,13 +33,13 @@ final class PlayRepositoryTests: XCTestCase {
     }
 
     func test_WHEN_getPlay_GIVEN_somePerformance_THEN_itShouldReturnSomePlay() throws {
-        let result = try sut.getPlay(for: Stub.somePerformance)
+        let result = try sut.getPlay(for: Stub.somePerformance.playId)
         let expectedResult = Stub.plays["hamlet"]
         XCTAssertEqual(expectedResult, result)
     }
     
     func test_WHEN_getPlay_GIVEN_someInvalidPerformance_THEN_itShouldThrowAnError() {
-        XCTAssertThrowsError(try sut.getPlay(for: Stub.someInvalidPerformance)) { error in
+        XCTAssertThrowsError(try sut.getPlay(for: Stub.someInvalidPerformance.playId)) { error in
             let receivedError = error as! PlayRepository.Error
             let expectedError = PlayRepository.Error.playNotFound
             XCTAssertEqual(expectedError, receivedError)

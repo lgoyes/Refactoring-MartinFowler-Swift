@@ -8,7 +8,7 @@
 import Foundation
 
 protocol PlayResolver {
-    func getPlay(for performance: Performance) throws -> Play
+    func getPlay(for playId: String) throws -> Play
 }
 
 class PlayRepository {
@@ -23,8 +23,8 @@ class PlayRepository {
 }
 
 extension PlayRepository: PlayResolver {
-    func getPlay(for performance: Performance) throws -> Play {
-        guard let play = plays[performance.playId] else {
+    func getPlay(for playId: String) throws -> Play {
+        guard let play = plays[playId] else {
             throw Error.playNotFound
         }
         return play

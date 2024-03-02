@@ -45,9 +45,9 @@ class DefaultBillPrinter: BillPrinter {
         var result = "Statement for \(invoice.customer)\n"
         
         for performance in invoice.performances {
-            volumeCredits += try getVolumeCreditsFor(performance: performance)
+            volumeCredits += try CreditsCalculator(playResolver: playResolver, performance: performance).calculate()
             
-            let play = try playResolver.getPlay(for: performance)
+            let play = try playResolver.getPlay(for: performance.playId)
             let thisAmount = try ChargeCalculator(playResolver: playResolver, performance: performance).calculate()
             result += "   \(play.name): \( try USDFormatter(amountInCents: thisAmount).format() ) (\(performance.audience)) seats\n"
             totalAmount += thisAmount
@@ -57,14 +57,5 @@ class DefaultBillPrinter: BillPrinter {
         result += "You earned \(volumeCredits) credits"
         
         return result
-    }
-    
-    func getVolumeCreditsFor(performance: Performance) throws -> Int {
-        var volumeCredits = max(performance.audience - 30, 0)
-        let play = try playResolver.getPlay(for: performance)
-        if (play.type == "comedy") {
-            volumeCredits += Int(floor(Double(performance.audience) / 5.0))
-        }
-        return volumeCredits
     }
 }

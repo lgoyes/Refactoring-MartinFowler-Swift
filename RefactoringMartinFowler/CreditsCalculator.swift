@@ -34,9 +34,9 @@ class CreditsCalculator {
         return credits
     }
     
-    func getPlay() throws -> Play {
+    private func getPlay() throws -> Play {
         do {
-            let play = try playResolver.getPlay(for: performance)
+            let play = try playResolver.getPlay(for: performance.playId)
             return play
         } catch {
             throw Error.invalidPlayIdForPerformance

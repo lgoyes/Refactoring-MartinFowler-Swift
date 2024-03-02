@@ -9,14 +9,14 @@ import Foundation
 @testable import RefactoringMartinFowler
 
 class FakePlayResolver: PlayResolver {
-    var receivedPerformance: Performance!
+    var receivedPlayId: String!
     var getPlayCalled = false
     var someError: Swift.Error?
     var somePlay: Play!
     
-    func getPlay(for performance: Performance) throws -> Play {
+    func getPlay(for playId: String) throws -> Play {
         getPlayCalled = true
-        receivedPerformance = performance
+        receivedPlayId = playId
         if let someError {
             throw someError
         }
