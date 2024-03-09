@@ -81,11 +81,11 @@ final class ChargeCalculatorTests: XCTestCase {
     }
     
     func test_WHEN_calculate_GIVEN_someInvalidPerformanceWhoseIdIsNotIncludedInTheSetOfAvailablePlays_THEN_itShouldThrowAnError() {
-        playResolver.someError = ChargeCalculator.Error.invalidPlayIdForPerformance
+        playResolver.someError = PlayRepository.Error.playNotFound
         
         sut = ChargeCalculator(playResolver: playResolver, performance: Stub.someInvalidPerformance)
         XCTAssertThrowsError(try sut.calculate()) { error in
-            XCTAssertEqual(error as! ChargeCalculator.Error, .invalidPlayIdForPerformance)
+            XCTAssertEqual(error as! PlayExtractor.Error, .invalidPlayId)
         }
     }
     

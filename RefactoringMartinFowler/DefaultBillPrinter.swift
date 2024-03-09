@@ -58,19 +58,7 @@ class DefaultBillPrinter: BillPrinter {
     }
     
     func createBill() throws -> Bill {
-        let items = try invoice.performances.map {
-            let play = try playResolver.getPlay(for: $0.playId)
-            let performanceAmount = try ChargeCalculator(playResolver: playResolver, performance: $0).calculate()
-            return BillLineItem(playName: play.name, amountInCents: performanceAmount, audience: $0.audience)
-        }
-        let totalAmountInCents = items.reduce(0) { partialResult, item in
-            return partialResult + item.amountInCents
-        }
-        let creditsEarned = try invoice.performances.reduce(0) { partialResult, performance in
-            let performanceCredits = try CreditsCalculator(playResolver: playResolver, performance: performance).calculate()
-            return partialResult + performanceCredits
-        }
-        return Bill(customer: invoice.customer, items: items, totalAmountInCents: totalAmountInCents, creditsEarned: creditsEarned)
+        try DefaultBillCalculator(invoice: invoice, playResolver: playResolver).calculate()
     }
     
     func renderPlainText(_ bill: Bill) throws -> String {

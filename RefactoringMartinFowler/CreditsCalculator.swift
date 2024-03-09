@@ -14,10 +14,7 @@ class CreditsCalculator {
         static let audienceToCreditsConversionFactor = 1.0 / 5.0
     }
     
-    enum Error: Swift.Error {
-        case invalidPlayIdForPerformance
-    }
-    
+    #warning("TODO: Reemplazar play resolver por play directamente")
     let playResolver: PlayResolver
     let performance: Performance
     init(playResolver: PlayResolver, performance: Performance) {
@@ -27,19 +24,10 @@ class CreditsCalculator {
     
     func calculate() throws -> Int {
         var credits = max(performance.audience - Constant.audienceThreshold, Constant.minimumCredits)
-        let play = try getPlay()
+        let play = try PlayExtractor(playResolver: playResolver, playId: performance.playId).getPlay()
         if (play.type == "comedy") {
             credits += Int(floor(Double(performance.audience) * Constant.audienceToCreditsConversionFactor))
         }
         return credits
-    }
-    
-    private func getPlay() throws -> Play {
-        do {
-            let play = try playResolver.getPlay(for: performance.playId)
-            return play
-        } catch {
-            throw Error.invalidPlayIdForPerformance
-        }
     }
 }

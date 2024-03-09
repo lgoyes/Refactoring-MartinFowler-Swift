@@ -19,6 +19,13 @@
 		792BFC102B2E035100F38344 /* RefactoringMartinFowler.h in Headers */ = {isa = PBXBuildFile; fileRef = 792BFC022B2E035100F38344 /* RefactoringMartinFowler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		792BFC1A2B2E03E700F38344 /* DefaultBillPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792BFC192B2E03E700F38344 /* DefaultBillPrinter.swift */; };
 		792BFC1C2B2E06F300F38344 /* BillPrinterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792BFC1B2B2E06F300F38344 /* BillPrinterTests.swift */; };
+		795613392B9CB9C50084217F /* BillLineItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795613382B9CB9C50084217F /* BillLineItemFactory.swift */; };
+		7956133B2B9CB9D50084217F /* BillLineItemsExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7956133A2B9CB9D50084217F /* BillLineItemsExtractor.swift */; };
+		7956133D2B9CB9E40084217F /* InvoiceCreditsCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7956133C2B9CB9E40084217F /* InvoiceCreditsCalculator.swift */; };
+		7956133F2B9CB9F60084217F /* InvoiceTotalAmountCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7956133E2B9CB9F60084217F /* InvoiceTotalAmountCalculator.swift */; };
+		795613412B9CBB160084217F /* DefaultBillCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795613402B9CBB160084217F /* DefaultBillCalculatorTests.swift */; };
+		795613432B9CBB500084217F /* DefaultBillCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795613422B9CBB500084217F /* DefaultBillCalculator.swift */; };
+		795613452B9CBD530084217F /* PlayExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795613442B9CBD530084217F /* PlayExtractor.swift */; };
 		79C65B272B5C19740078C32A /* USDFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C65B262B5C19740078C32A /* USDFormatter.swift */; };
 		79C65B292B5C198C0078C32A /* USDFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C65B282B5C198C0078C32A /* USDFormatterTests.swift */; };
 		79C65B2B2B5C24B60078C32A /* PlayRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C65B2A2B5C24B60078C32A /* PlayRepository.swift */; };
@@ -49,6 +56,13 @@
 		792BFC092B2E035100F38344 /* RefactoringMartinFowlerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RefactoringMartinFowlerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		792BFC192B2E03E700F38344 /* DefaultBillPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBillPrinter.swift; sourceTree = "<group>"; };
 		792BFC1B2B2E06F300F38344 /* BillPrinterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPrinterTests.swift; sourceTree = "<group>"; };
+		795613382B9CB9C50084217F /* BillLineItemFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillLineItemFactory.swift; sourceTree = "<group>"; };
+		7956133A2B9CB9D50084217F /* BillLineItemsExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillLineItemsExtractor.swift; sourceTree = "<group>"; };
+		7956133C2B9CB9E40084217F /* InvoiceCreditsCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceCreditsCalculator.swift; sourceTree = "<group>"; };
+		7956133E2B9CB9F60084217F /* InvoiceTotalAmountCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceTotalAmountCalculator.swift; sourceTree = "<group>"; };
+		795613402B9CBB160084217F /* DefaultBillCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBillCalculatorTests.swift; sourceTree = "<group>"; };
+		795613422B9CBB500084217F /* DefaultBillCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBillCalculator.swift; sourceTree = "<group>"; };
+		795613442B9CBD530084217F /* PlayExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayExtractor.swift; sourceTree = "<group>"; };
 		79C65B262B5C19740078C32A /* USDFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDFormatter.swift; sourceTree = "<group>"; };
 		79C65B282B5C198C0078C32A /* USDFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDFormatterTests.swift; sourceTree = "<group>"; };
 		79C65B2A2B5C24B60078C32A /* PlayRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRepository.swift; sourceTree = "<group>"; };
@@ -103,6 +117,12 @@
 				79239B512B6561FD002432D9 /* BillPrinterFactory.swift */,
 				79239B572B657117002432D9 /* ChargeCalculator.swift */,
 				790E9C092B6EAA7B005DCE7E /* CreditsCalculator.swift */,
+				795613382B9CB9C50084217F /* BillLineItemFactory.swift */,
+				7956133A2B9CB9D50084217F /* BillLineItemsExtractor.swift */,
+				7956133C2B9CB9E40084217F /* InvoiceCreditsCalculator.swift */,
+				7956133E2B9CB9F60084217F /* InvoiceTotalAmountCalculator.swift */,
+				795613422B9CBB500084217F /* DefaultBillCalculator.swift */,
+				795613442B9CBD530084217F /* PlayExtractor.swift */,
 			);
 			path = RefactoringMartinFowler;
 			sourceTree = "<group>";
@@ -117,6 +137,7 @@
 				79239B552B6570AF002432D9 /* ChargeCalculatorTests.swift */,
 				790E9C072B6EAA1E005DCE7E /* CreditsCalculatorTests.swift */,
 				790E9C0B2B6EAAD2005DCE7E /* FakePlayResolver.swift */,
+				795613402B9CBB160084217F /* DefaultBillCalculatorTests.swift */,
 			);
 			path = RefactoringMartinFowlerTests;
 			sourceTree = "<group>";
@@ -231,12 +252,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				795613452B9CBD530084217F /* PlayExtractor.swift in Sources */,
 				792BFC042B2E035100F38344 /* RefactoringMartinFowler.docc in Sources */,
 				79239B582B657117002432D9 /* ChargeCalculator.swift in Sources */,
 				79239B522B6561FD002432D9 /* BillPrinterFactory.swift in Sources */,
 				79C65B2B2B5C24B60078C32A /* PlayRepository.swift in Sources */,
+				7956133D2B9CB9E40084217F /* InvoiceCreditsCalculator.swift in Sources */,
+				7956133F2B9CB9F60084217F /* InvoiceTotalAmountCalculator.swift in Sources */,
 				79C65B272B5C19740078C32A /* USDFormatter.swift in Sources */,
+				7956133B2B9CB9D50084217F /* BillLineItemsExtractor.swift in Sources */,
+				795613432B9CBB500084217F /* DefaultBillCalculator.swift in Sources */,
 				792BFC1A2B2E03E700F38344 /* DefaultBillPrinter.swift in Sources */,
+				795613392B9CB9C50084217F /* BillLineItemFactory.swift in Sources */,
 				790E9C0A2B6EAA7B005DCE7E /* CreditsCalculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				795613412B9CBB160084217F /* DefaultBillCalculatorTests.swift in Sources */,
 				790E9C082B6EAA1E005DCE7E /* CreditsCalculatorTests.swift in Sources */,
 				79C65B2D2B5C24C90078C32A /* PlayRepositoryTests.swift in Sources */,
 				792BFC1C2B2E06F300F38344 /* BillPrinterTests.swift in Sources */,

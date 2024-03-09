@@ -61,7 +61,7 @@ final class CreditsCalculatorTests: XCTestCase {
         GIVEN_somePerformance(performance: Stub.someInvalidPerformance)
         
         XCTAssertThrowsError(try sut.calculate()) { error in
-            XCTAssertEqual(error as! CreditsCalculator.Error, .invalidPlayIdForPerformance)
+            XCTAssertEqual(error as! PlayExtractor.Error, .invalidPlayId)
         }
     }
     
